@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title_head %}
+Videojuego
+{% endblock title_head %}
+{% block h1_header %}
+Videojuegos
+{% endblock h1_header %}
+
+{% block main %}
+<ul>
+    <li>Productora: {{videojuego.productora}}</li>
+    <li>Videojuego: {{videojuego.videojuego}}</li>
+</ul>
+{% endblock main %}
