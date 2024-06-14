@@ -1,14 +1,24 @@
 {% extends "base.html" %}
+
 {% block title_head %}
-Videojuego
-{% endblock title_head %}
-{% block h1_header %}
 Videojuegos
+{% endblock title_head %}
+
+{% block h1_header %}
+Lista de videojuegos
 {% endblock h1_header %}
 
+
 {% block main %}
-<ul>
-    <li>Productora: {{videojuego.productora}}</li>
-    <li>Videojuego: {{videojuego.videojuego}}</li>
-</ul>
+
+{% if juegos %}
+    <ul>
+        {% for videojuego in juegos  %}
+        <li>{{videojuego}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No hay juegos creados</p>
+{% endif %}
+
 {% endblock main %}

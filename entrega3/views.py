@@ -8,24 +8,35 @@ from django.db import migrations, models
 from entrega3.models1 import Videojuego
 from django import forms
 
-# from entrega3.forms import CrearAuto, BuscarAuto
+from entrega3.forms import CrearVideojuegos
 
 import random
 
 def inicio(request):
     return render(request, 'inicio/index.html')
 
-def probando(request):
+def crearjuego2(request):
+       
+    if request.method == 'POST':
+        formulario = CrearVideojuegos(request.POST)
+        if formulario.is_valid():
+            datos = formulario.cleaned_data
+            videojuego = Videojuego(videojuego=datos.get('videojuego'), productora=datos.get('productora'))
+            videojuego.save()
+            return redirect('juegos')
+            
+            
+    formulario = CrearVideojuegos()
     
-    lista = list(range(500))
-    
-    numeros = random.choices(lista, k=50)
-    print(numeros)
-    return render(request, 'probando.html', {'numeros': numeros})
+    return render(request, 'inicio/crearjuego2.html', {'formulario': formulario})
 
-def crearjuego(request, videojuego, productora):
-    juego = Videojuego(videojuego=videojuego, productora=productora)
-    juego.save()
-    return render(request, 'inicio/juegos.html', {'videojuego': videojuego})
+def juegos(request):
+    
+    juegos = Videojuego.objects.all()
+    
+    return render(request, 'inicio/juegos.html', {'juegos':juegos})
+
+    
+
 
     
