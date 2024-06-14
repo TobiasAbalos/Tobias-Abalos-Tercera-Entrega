@@ -1,16 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-
-from django.http import HttpResponse
-from django.template import Template, Context, loader
-from django.db import migrations, models
-
 from entrega3.models1 import Videojuego
 from django import forms
 
 from entrega3.forms import CrearVideojuegos
-
-import random
 
 def inicio(request):
     return render(request, 'inicio/index.html')
