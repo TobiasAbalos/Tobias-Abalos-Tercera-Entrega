@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block title_head %}
-Editar Paleta
+Editar Equipo
 {% endblock title_head %}
 
 {% block h1_header %}
-Editar Paleta
+Editar Equipo
 {% endblock h1_header %}
 
 {% block main %}
 
-<form action={% url "editar_equipo" %} method="POST">
+<form action={% url "editar_equipo" equipo.id%} method="POST">
     {% csrf_token %}
 
     {{form}}

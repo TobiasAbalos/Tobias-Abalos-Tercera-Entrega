@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title_head %}
+Equipo
+{% endblock title_head %}
+{% block h1_header %}
+{{equipo}}
+{% endblock h1_header %}
+
+{% block main %}
+<ul>
+    <li>Equipo: {{equipo.equipo}}</li>
+    <li>Pais: {{equipo.pais}}</li>
+    <li>Liga: {{equipo.liga}}</li>
+    <li>Fecha: {{equipo.fecha}}</li>
+</ul>
+{% endblock main %}

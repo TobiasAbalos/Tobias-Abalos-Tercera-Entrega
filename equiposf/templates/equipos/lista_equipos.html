@@ -10,20 +10,25 @@ Listado de Equipos
 
 {% block main %}
 
-<a href={% url "crear_paleta" %}>Crear Paleta</a>
+<a href={% url "crear_equipo" %}>Crear Equipo</a>
 
-{% if paletas %}
+<form action={% url "equipos" %} method="get">
+    {{form}}
+    <input type="submit" value="No pude hacer andar el buscador :(">
+</form>
+
+{% if equipos %}
 
     <ul>
-        {% for paleta in paletas %}
-        <li>{{paleta}} UwU 
-            <a href={% url "eliminar_paleta" paleta.id%}>Eliminar</a> UwU
-            <a href={% url "editar_paleta" paleta.id%}>Editar</a> UwU
-            <a href={% url "ver_paleta" paleta.id %}>Ver</a> 
+        {% for equipo in equipos %}
+        <li>{{equipo}}. UwU 
+            <a href={% url "eliminar_equipo" equipo.id%}>Eliminar</a> UwU
+            <a href={% url "editar_equipo" equipo.id%}>Editar</a> UwU
+            <a href={% url "ver_equipo" equipo.id %}>Ver</a> 
         </li>
         {% endfor %}
     </ul>
 {% else %}
-<p>No hay paletas creadas</p>
+<p>No hay equipos creados</p>
 {% endif %}
 {% endblock main %}
