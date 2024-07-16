@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Editar Paleta
+{% endblock title_head %}
+
+{% block h1_header %}
+Editar Paleta
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action={% url "eliminar_equipo" %} method="POST">
+    {% csrf_token %}
+    <p>
+        Desea confirmar el borrado de la paleta {{paleta}}?
+    </p>
+    <input type="submit" value="Confirmar borrado">
+</form>
+
+{% endblock main %}

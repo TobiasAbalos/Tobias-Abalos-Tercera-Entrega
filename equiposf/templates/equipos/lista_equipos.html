@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Equipos
+{% endblock title_head %}
+
+{% block h1_header %}
+Listado de Equipos
+{% endblock h1_header %}
+
+{% block main %}
+
+<a href={% url "crear_paleta" %}>Crear Paleta</a>
+
+{% if paletas %}
+
+    <ul>
+        {% for paleta in paletas %}
+        <li>{{paleta}} UwU 
+            <a href={% url "eliminar_paleta" paleta.id%}>Eliminar</a> UwU
+            <a href={% url "editar_paleta" paleta.id%}>Editar</a> UwU
+            <a href={% url "ver_paleta" paleta.id %}>Ver</a> 
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No hay paletas creadas</p>
+{% endif %}
+{% endblock main %}

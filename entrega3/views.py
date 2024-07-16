@@ -55,6 +55,7 @@ def editar_juego(request, id):
         if formulario.is_valid():
             info = formulario.cleaned_data
             juego.productora = info['productora']
+            juego.videojuego = info['videojuego']          
             juego.save()
             return redirect('juegos')
         
