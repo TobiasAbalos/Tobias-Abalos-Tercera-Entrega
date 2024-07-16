@@ -42,6 +42,28 @@ def juegos(request):
     
     return render(request, 'inicio/juegos.html', {'juegos': juegos, 'formulario': formulario})
 
+def eliminar_juego(request, id):
+    juego = Videojuego.objects.get(id=id)
+    juego.delete()
+    return redirect('juegos')
+
+def editar_juego(request, id):
+    juego = Videojuego.objects.get(id=id)
+    formulario = EditarJuegoFormulario(initial={'productora': juego.productora})
+    if request.method == 'POST':
+        formulario = EditarJuegoFormulario(request.POST)
+        if formulario.is_valid():
+            info = formulario.cleaned_data
+            juego.productora = info['productora']
+            juego.save()
+            return redirect('juegos')
+        
+    return render(request, 'inicio/editar_juego.html', {'formulario' : formulario, 'juego' : juego})
+    
+def ver_juego(request, id):
+    juego = Videojuego.objects.get(id=id)
+    return render(request, 'inicio/ver_juego.html', {'juego': juego})
+
     
 
 

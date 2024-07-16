@@ -21,7 +21,12 @@ Lista de videojuegos
 {% if juegos %}
     <ul>
         {% for videojuego in juegos  %}
-        <li>{{videojuego}}</li>
+        <li>{{videojuego}} UwU
+            <a href={% url "editar_juego" videojuego.id %}>Editar</a> UwU
+            <a href={% url "eliminar_juego" videojuego.id%}>Eliminar</a> UwU
+            <a href={% url "ver_juego" videojuego.id%}>Ver</a> UwU
+            
+        </li>
         {% endfor %}
     </ul>
 {% else %}
