@@ -7,6 +7,7 @@ from .models import Equipo
 from django.urls import reverse_lazy
 # from equiposf.forms import
 from django import forms
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -34,7 +35,7 @@ class CrearEquipo(CreateView):
     success_url = reverse_lazy('equipos')
     fields = ['equipo', 'pais', 'liga', 'fecha']
     
-class EditarEquipo(UpdateView):
+class EditarEquipo(LoginRequiredMixin, UpdateView):
     model = Equipo
     template_name ='equipos/editar_equipo.html'
     success_url = reverse_lazy('equipos')
@@ -44,7 +45,7 @@ class VerEquipo(DetailView):
     model = Equipo
     template_name = 'equipos/ver_equipo.html'
     
-class EliminarEquipo(DeleteView):
+class EliminarEquipo(LoginRequiredMixin, DeleteView):
     model = Equipo
     template_name = "equipos/eliminar_equipo.html"
     success_url = reverse_lazy('equipos')

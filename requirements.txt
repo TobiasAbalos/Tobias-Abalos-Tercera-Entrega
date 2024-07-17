@@ -1,4 +1,7 @@
 asgiref==3.8.1
 Django==5.0.6
+mipaquete @ file:///C:/Users/tobia/OneDrive/Escritorio/Programacion/Clases/dist/mipaquete-0.0.1.tar.gz#sha256=5cf3e6fb4abc9e7ab2f20243c37127a1395119fcd3a57abc4f8eab0cfdd8a031
+pillow==10.4.0
+setuptools==70.0.0
 sqlparse==0.5.0
 tzdata==2024.1

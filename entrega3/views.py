@@ -4,6 +4,8 @@ from django import forms
 from entrega3.forms import CrearVideojuegos, BuscarJuego, EditarJuegoFormulario, CrearJuegoFormulario
 import random
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
 def inicio(request):
     return render(request, 'inicio/index.html')
 
@@ -42,11 +44,13 @@ def juegos(request):
     
     return render(request, 'inicio/juegos.html', {'juegos': juegos, 'formulario': formulario})
 
+@login_required
 def eliminar_juego(request, id):
     juego = Videojuego.objects.get(id=id)
     juego.delete()
     return redirect('juegos')
 
+@login_required
 def editar_juego(request, id):
     juego = Videojuego.objects.get(id=id)
     formulario = EditarJuegoFormulario(initial={'productora': juego.productora})
