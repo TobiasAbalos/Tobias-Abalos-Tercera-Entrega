@@ -55,7 +55,7 @@ def editar_pais(request, id):
             pais.save()
             return redirect('paises')
         
-    return render(request, 'paises/editar_pais.html', {'formulario' : formulario, 'pais':pais})
+    return render(request, 'pais/editar_pais.html', {'formulario' : formulario, 'pais':pais})
 
 def ver_pais(request, id):
     pais = PaisModel.objects.get(id=id)
