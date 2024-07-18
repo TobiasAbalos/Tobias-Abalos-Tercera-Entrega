@@ -10,7 +10,7 @@ Editando a {{pais}}
 
 {% block main %}
 
-<form action={% url "editar_pais" juego.id %} method="POST">
+<form action={% url "editar_pais" pais.id %} method="POST">
     {% csrf_token %}
 
     {{formulario}}

@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Equipo
 from django.urls import reverse_lazy
-# from equiposf.forms import
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 
@@ -16,14 +15,23 @@ class Equipos(ListView):
     model = Equipo
     template_name = 'equipos/lista_equipos.html'
     context_object_name = 'equipos'
-    def equipos(request):
-        formulario = BuscarEquipo(request.GET)
-        if formulario.is_valid():
-            pais = formulario.cleaned_data['pais']
-            liga = formulario.cleaned_data['liga']
-            equipos = Equipo.objects.filter(liga_icontains=liga, pais_icontais=pais)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['formulario'] = BuscarEquipo(self.request.GET)
+        return context
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        pais = self.request.GET.get('pais', None)
+        liga = self.request.GET.get('liga', None)
+        
+        if pais:
+            queryset = queryset.filter(pais__icontains=pais)
+        if liga:
+            queryset = queryset.filter(liga__icontains=liga)
             
-        return render(request, 'equiposf/lista_equipos.html', {'equipos':equipos, 'formulario':formulario})
+        return queryset
     
 class BuscarEquipo(forms.Form):
     pais = forms.CharField(max_length=20, required=False)

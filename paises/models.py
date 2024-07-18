@@ -10,5 +10,5 @@ class PaisModel(models.Model):
     fecha = models.DateField(default=date.today)
     
     def __str__(self):
-            return f'Pais: {self.pais}. Capital: {self.capital}. Ciudad: {self.ciudad}, Municipio: {self.municipio}, Fecha: {self.fecha}'
+            return f'Pais: {self.pais}. Capital: {self.capital}. Ciudad: {self.ciudad}, Municipio/Localidad: {self.municipio}, Fecha: {self.fecha}'
 

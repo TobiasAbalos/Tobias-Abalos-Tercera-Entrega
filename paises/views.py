@@ -31,8 +31,6 @@ def paises(request):
         municipio = formulario.cleaned_data['municipio']
         paises = PaisModel.objects.filter(capital__icontains=capital, ciudad__icontains=ciudad, municipio__icontains=municipio,)
     
-    # autos = Auto.objects.all()
-    
     return render(request, 'pais/paises.html', {'paises': paises, 'formulario': formulario})
 
 @login_required
