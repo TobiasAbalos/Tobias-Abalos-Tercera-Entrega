@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from equiposf.forms import EquipoForm
 
 
 
@@ -18,7 +19,7 @@ class Equipos(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['formulario'] = BuscarEquipo(self.request.GET)
+        context['formulario'] = EquipoForm(self.request.GET)
         return context
     
     def get_queryset(self):
@@ -33,9 +34,6 @@ class Equipos(ListView):
             
         return queryset
     
-class BuscarEquipo(forms.Form):
-    pais = forms.CharField(max_length=20, required=False)
-    liga = forms.CharField(max_length=20, required=False)
     
 class CrearEquipo(CreateView):
     model = Equipo
