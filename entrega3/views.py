@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 from entrega3.models1 import Videojuego
-from django import forms
-from entrega3.forms import CrearVideojuegos, BuscarJuego, EditarJuegoFormulario, CrearJuegoFormulario
-import random
-from datetime import datetime
+from entrega3.forms import CrearVideojuegos, BuscarJuego, EditarJuegoFormulario, CrearJuegoFormulario 
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
@@ -16,7 +13,7 @@ def crearjuego2(request):
         formulario = CrearJuegoFormulario(request.POST)
         if formulario.is_valid():
             datos = formulario.cleaned_data
-            videojuego = Videojuego(videojuego=datos.get('videojuego'), productora=datos.get('productora'))
+            videojuego = Videojuego(videojuego=datos.get('videojuego'), productora=datos.get('productora'), fecha=datos.get('fecha'))
             videojuego.save()
             return redirect('juegos')
             
@@ -59,7 +56,7 @@ def editar_juego(request, id):
         if formulario.is_valid():
             info = formulario.cleaned_data
             juego.productora = info['productora']
-            juego.videojuego = info['videojuego']          
+            juego.videojuego = info['videojuego']         
             juego.save()
             return redirect('juegos')
         

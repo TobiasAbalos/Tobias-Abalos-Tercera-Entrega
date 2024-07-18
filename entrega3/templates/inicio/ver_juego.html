@@ -10,5 +10,25 @@ Ver Juego
 <ul>
     <li>Juego: {{juego.videojuego}}</li>
     <li>Productora: {{juego.productora}}</li>
+    <li>Fecha: {{juego.fecha}}</li>
 </ul>
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href={% url "aboutme" %}>About Me</a></li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">CoderHouse</p>
+                <p class="text-muted small mb-4 mb-lg-0">Programacion</p>
+                <p class="text-muted small mb-4 mb-lg-0">Python</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                <ul class="list-inline mb-0">
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 {% endblock main %}

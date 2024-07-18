@@ -1,23 +1,37 @@
 {% extends "base.html" %}
 
 {% block title_head %}
-Registro
+Paises
 {% endblock title_head %}
 
 {% block h1_header %}
-Registro
+Lista de paises
 {% endblock h1_header %}
+
 
 {% block main %}
 
-<form action={% url "registro" %} method="POST">
-    {% csrf_token %}
+<a href={% url "crearpais" %}>Crear Pais</a>
 
+<form action={% url "paises" %} method="get">
     {{formulario}}
-
-    <input type="submit" value="Registrarse">
-
+    <input type="submit" value="Buscar">
 </form>
+
+{% if paises %}
+    <ul>
+        {% for pais in paises  %}
+        <li>{{pais}} UwU
+            <a href={% url "editar_pais" pais.id %}>Editar</a> UwU
+            <a href={% url "eliminar_pais" pais.id%}>Eliminar</a> UwU
+            <a href={% url "ver_pais" pais.id%}>Ver</a> UwU
+            
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No hay paises creados</p>
+{% endif %}
 <footer class="footer bg-light">
     <div class="container">
         <div class="row">
@@ -37,4 +51,5 @@ Registro
         </div>
     </div>
 </footer>
+
 {% endblock main %}

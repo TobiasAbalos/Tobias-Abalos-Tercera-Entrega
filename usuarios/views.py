@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from usuarios.forms import NuestroFormularioDeCreacion, EditarPerfil
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-
+from usuarios.models import DatosExtra
 
 def login(request):
     
@@ -40,22 +40,32 @@ def registro(request):
     
     return render(request, 'usuarios/registro.html', {'formulario': formulario})
 
+
 @login_required
 def editar_perfil(request):
-    
-    formulario = EditarPerfil(initial={'avatar': request.user.datosextra.avatar},instance=request.user)
+    user = request.user
+    datos_extra = user.datosextra
     
     if request.method == 'POST':
-        formulario = EditarPerfil(request.POST, request.FILES ,instance=request.user)
+        formulario = EditarPerfil(request.POST, request.FILES, instance=user)
         if formulario.is_valid():
-            datosextra = request.user.datosextra
-            datosextra.avatar = formulario.cleaned_data.get('avatar')
-            datosextra.save()
             formulario.save()
+            datos_extra.avatar = formulario.cleaned_data.get('avatar')
+            datos_extra.save()
             return redirect('editar_perfil')
+    else:
+        formulario = EditarPerfil(initial={'avatar': datos_extra.avatar}, instance=user)
         
-    return render(request, 'usuarios/editar_perfil.html', {'formulario':formulario})
+    context = {
+        'formulario': formulario,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'email': user.email
+    }
+    
+    return render(request, 'usuarios/editar_perfil.html', context)
 
 class CambiarPassword(LoginRequiredMixin, PasswordChangeView):
     template_name = 'usuarios/cambiar_pass.html'
     success_url = reverse_lazy('editar_perfil')
+    

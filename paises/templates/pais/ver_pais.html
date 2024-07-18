@@ -1,23 +1,18 @@
 {% extends "base.html" %}
-
 {% block title_head %}
-Registro
+Ver pais
 {% endblock title_head %}
-
 {% block h1_header %}
-Registro
+Pais del mundo
 {% endblock h1_header %}
 
 {% block main %}
-
-<form action={% url "registro" %} method="POST">
-    {% csrf_token %}
-
-    {{formulario}}
-
-    <input type="submit" value="Registrarse">
-
-</form>
+<ul>
+    <li>Pais: {{pais.pais}}</li>
+    <li>Capital: {{pais.capital}}</li>
+    <li>Ciudad: {{pais.ciudad}}</li>
+    <li>Municipio: {{pais.municipio}}</li>
+</ul>
 <footer class="footer bg-light">
     <div class="container">
         <div class="row">

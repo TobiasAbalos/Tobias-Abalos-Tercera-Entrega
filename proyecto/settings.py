@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'entrega3',
     'usuarios',
     'equiposf',
+    'paises',
 ]
 
 MIDDLEWARE = [

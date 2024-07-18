@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('entrega3.urls')),
     path('equiposf/', include('equiposf.urls')),
     path('usuarios/', include('usuarios.urls')),
+    path('', include('paises.urls')),
     
 ]
 
